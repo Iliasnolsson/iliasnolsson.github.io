@@ -1,0 +1,47 @@
+
+class PalletRectangleListLayout {
+
+    // number of rectangles - int
+    // spacing fraction - double 0...1
+    // custom width fractions - dictionary of int : float 0...1
+    // custom spacing fractions - dictionary of int : float 0...1
+    constructor({ numberOfRectangles, spacingFraction, customWidthFractions, customSpacingFractions }) {
+        var customWidthFractionsValues = Object.values(customWidthFractions)
+        var customSpacingFractionValues = Object.values(customSpacingFractions)
+
+        this.numberOfRectangles = numberOfRectangles
+        this.rectangleLayouts = []
+
+        if (numberOfRectangles == 0) {return}
+
+        var numberOfCustomWidths = Math.min(numberOfRectangles, customWidthFractionsValues.length);
+        var totalCustomWidthFraction = 0;
+        for (let index = 0; index < numberOfCustomWidths; index++) {
+            totalCustomWidthFraction += customWidthFractionsValues[index];
+        }
+
+        var numberOfSpacings = Math.max(0, numberOfRectangles - 1);
+        var numberOfCustomSpacings = Math.min(numberOfSpacings, customSpacingFractionValues.length);
+        var totalCustomSpacingFraction = 0;
+        for (let index = 0; index < numberOfCustomSpacings; index++) {
+            totalCustomSpacingFraction += customSpacingFractionValues[index];
+        }
+
+        var totalSpacing = totalCustomSpacingFraction + (numberOfSpacings - numberOfCustomSpacings) * spacingFraction;
+       
+        var fractionAvailableForWidthFraction = 1 - totalSpacing - totalCustomWidthFraction;
+        var numberOfNonCustomRectangle = numberOfRectangles - numberOfCustomWidths;
+
+        // Width fraction for rectangles where no custom width is specified
+        var widthFraction = (fractionAvailableForWidthFraction == 0 || numberOfNonCustomRectangle == 0) ? 0 : fractionAvailableForWidthFraction / numberOfNonCustomRectangle;
+
+        var offset = 0;
+        for (let index = 0; index < numberOfRectangles; index++) {
+            var width = customWidthFractions[index] ?? widthFraction;
+            var spacing = customSpacingFractions[index] ?? spacingFraction;
+            this.rectangleLayouts.push(new PalletRectangleListRectangleLayout(offset, width));
+            offset += width + spacing;
+        }
+    }
+
+}

@@ -1,0 +1,115 @@
+/* Fonts */
+@font-face { font-family: HelveticaBold; src: url("resources/fonts/helvetica-bold.ttf"); } 
+@font-face { font-family: HelveticaMedium; src: url("resources/fonts/helvetica-medium.ttf"); } 
+@font-face { font-family: Helvetica; src: url("resources/fonts/helvetica.ttf"); } 
+
+:root {
+    --helvetica-bold: "HelveticaBold";
+    --helvetica-medium: "HelveticaMedium";
+    --helvetica: "Helvetica";
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: grid;
+    height: 100%;
+}
+
+.content, .overlay {
+    grid-area: 1 / 1;
+}
+
+.overlay {
+    pointer-events: none;
+    display: flex;
+    padding-top: 27px;
+    padding-left: 27px;
+    padding-right: 27px;
+    justify-content: space-between;
+}
+
+/* Leading */ 
+.title-label {
+    font-family: var(--helvetica-bold);
+    font-size: 3em;
+}
+
+.body-label {
+    font-family: var(--helvetica-medium);
+    font-size: 1.3em;
+    line-height: 122%;
+}
+
+#configurator-texts-container {
+    height: min-content;
+    display: grid;
+    row-gap: 12px;
+    width: 46%;
+}
+
+#configurator-overlay-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Trailing  */ 
+#configurator-trailing-container {
+    justify-items: end;
+    height: min-content;
+    display: grid;
+}
+
+#x-y-z-icon-image {
+    width: 38px;
+    height: 38px;
+    padding-bottom: 36px;
+}
+
+#configurator-variables-list {
+    display: grid;
+    row-gap: 20px;
+}
+
+.configurator-variables-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.configurator-variables-list-item > label {
+    font-family: var(--helvetica-medium);
+    font-size: 1.3em;
+    text-align: end;
+    transform: translateY(7%);
+    margin-right: 16px;
+}
+
+.configurator-variables-list-item > div {
+    background-color: black;
+    padding: 5.5px 18px;
+    border-radius: 7em;
+}
+
+.configurator-variables-list-item > div > span {
+    font-family: var(--helvetica-bold);
+    font-size: 1.2em;
+    width: min-content;
+    color: white;
+    pointer-events: all;
+}
+
+.configurator-variables-list-item > div > span:focus {
+    outline: none !important;
+}
+
