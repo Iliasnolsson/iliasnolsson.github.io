@@ -6,6 +6,11 @@ class PalletRectangleGridLayout {
     // custom width fractions - dictionary of int : float 0...1
     // custom spacing fractions - dictionary of int : float 0...1
     constructor({ numberOfColumns, spacingFraction, customWidthFractions, customSpacingFractions }) {
+        var maxCustomWidthIndex = numberOfColumns - 1 
+        var customWidthFractions = Object.fromEntries(Object.entries(customWidthFractions).filter(([key]) => key <= maxCustomWidthIndex))
+        var maxCustomSpacingIndex = numberOfColumns - 2
+        var customSpacingFractions = Object.fromEntries(Object.entries(customSpacingFractions).filter(([key]) => key <= maxCustomSpacingIndex))
+
         var customWidthFractionsValues = Object.values(customWidthFractions)
         var customSpacingFractionValues = Object.values(customSpacingFractions)
 

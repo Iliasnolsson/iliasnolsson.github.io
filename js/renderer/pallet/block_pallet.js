@@ -49,6 +49,7 @@ class BlockPallet {
     get legs() {return this._legs}
     set legs(newValue) {
         this._legs = newValue
+        this._bottomList.numberOfRectangles = newValue
         this._blockGridColumnsNeedsReload()
     }
 
@@ -101,7 +102,7 @@ class BlockPallet {
     get legBlocks() {return this._legBlocks}
     set legBlocks(newValue) {
         this._legBlocks = newValue
-        this._stingersList.numberOfRows = newValue
+        this._stingersList.numberOfRectangles = newValue
         this._blockGridColumnsNeedsReload()
     }
 

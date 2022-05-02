@@ -105,7 +105,7 @@ class PalletRectangleGrid {
             } else if (numberOfColumnsToAdd < 0)
             {
                 for (let index = 0; index < Math.abs(numberOfColumnsToAdd); index++) {
-                    var listToRemove = _lists[0]
+                    var listToRemove = this._lists[0]
                     this._lists.splice(0, 1)
                     objectRemoveFromParent(listToRemove.object)
                 }

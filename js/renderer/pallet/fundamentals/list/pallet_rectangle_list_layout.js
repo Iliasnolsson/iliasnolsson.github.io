@@ -6,6 +6,11 @@ class PalletRectangleListLayout {
     // custom width fractions - dictionary of int : float 0...1
     // custom spacing fractions - dictionary of int : float 0...1
     constructor({ numberOfRectangles, spacingFraction, customWidthFractions, customSpacingFractions }) {
+        var maxCustomWidthIndex = numberOfRectangles - 1 
+        var customWidthFractions = Object.fromEntries(Object.entries(customWidthFractions).filter(([key]) => key <= maxCustomWidthIndex))
+        var maxCustomSpacingIndex = numberOfRectangles - 2
+        var customSpacingFractions = Object.fromEntries(Object.entries(customSpacingFractions).filter(([key]) => key <= maxCustomSpacingIndex))
+
         var customWidthFractionsValues = Object.values(customWidthFractions)
         var customSpacingFractionValues = Object.values(customSpacingFractions)
 
@@ -41,7 +46,7 @@ class PalletRectangleListLayout {
             var spacing = customSpacingFractions[index] ?? spacingFraction;
             this.rectangleLayouts.push(new PalletRectangleListRectangleLayout(offset, width));
             offset += width + spacing;
-        }
+        } 
     }
 
 }

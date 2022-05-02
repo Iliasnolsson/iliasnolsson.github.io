@@ -31,7 +31,16 @@ class ConfiguratorRenderer {
         this.scene.add(light);
 
         // Resizing 
-        window.addEventListener("resize", () => this._resize(), false)
+        function resizedw(){
+            // Haven't resized in 100ms!
+        }
+        
+
+        var resize;
+        window.addEventListener("resize", () => {
+            clearTimeout(resize);
+            resize = setTimeout(() => this._resize(), 100);
+        }, false)
         this._resize()
 
         // Begin rendering loop
@@ -84,6 +93,17 @@ class ConfiguratorRenderer {
                 mouseMove(ev)
             }
         })
+        this.mouseLeaveListener = DisposableEventListener.add({
+            target: window,
+            eventType: "mouseleave",
+            eventHandler: ev => {
+                ev.preventDefault()
+                this.mouseUpListener.dispose()
+                this.mouseMoveListener.dispose()
+                this.mouseLeaveListener.dispose()
+                mouseUp(ev)
+            }
+        })
         this.mouseUpListener = DisposableEventListener.add({
             target: window,
             eventType: "mouseup",
@@ -91,6 +111,7 @@ class ConfiguratorRenderer {
                 ev.preventDefault()
                 this.mouseUpListener.dispose()
                 this.mouseMoveListener.dispose()
+                this.mouseLeaveListener.dispose()
                 mouseUp(ev)
             }
         })

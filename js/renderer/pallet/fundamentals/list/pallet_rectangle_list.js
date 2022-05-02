@@ -126,9 +126,8 @@ class PalletRectangleList {
             } else {
                 for (let index = 0; index < Math.abs(numberOfNeededRectanglesToAdd); index++) {
                     var rectangleToRemove = this._rectangles[0]
-                    objectRemoveFromParent(rectangleToRemove)
-                    _rectangles.splice(0, 1);
-                    this._deleteRectangleAt(0)
+                    objectRemoveFromParent(rectangleToRemove.object)
+                    this._rectangles.splice(0, 1);
                 }
             }
             this._cornerRadiusNeedsReload()
@@ -211,5 +210,6 @@ class PalletRectangleList {
         this._isCornerRadiusApplyNeeded = false;
     }
     //#endregion
-    
+
+
 }

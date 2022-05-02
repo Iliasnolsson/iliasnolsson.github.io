@@ -160,7 +160,7 @@ class PalletRectangle {
             var rightMaxDepth = depth - r.bottomRight
             var leftMaxDepth = depth - r.bottomLeft
 
-            var segmentBoxWidth = width / 2;
+            var segmentBoxWidth = Math.min(width, depth) / 2;
             var segmentBoxDepth = Math.min(segmentBoxWidth, segmentBoxWidth);
             var topBottomMaxDepth = depth - segmentBoxDepth
 
