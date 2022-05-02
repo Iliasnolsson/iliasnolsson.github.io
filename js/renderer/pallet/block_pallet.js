@@ -113,7 +113,6 @@ class BlockPallet {
         this._blockGridColumnsNeedsReload()
     }
 
-
     get legsBlockCustomSpacingFractions() {return this._legsBlockCustomSpacingFractions}
     set legsBlockCustomSpacingFractions(newValue) {
         this._legsBlockCustomSpacingFractions = newValue

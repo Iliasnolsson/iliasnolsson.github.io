@@ -145,3 +145,20 @@ canvas {
     outline: none !important;
 }
 
+
+#drag-to-rotate-labe-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+
+#drag-to-rotate-label {
+    font-family: var(--helvetica);
+    font-size: 1.2em;
+    color: #A1A0A1;
+    padding-bottom: 20px;
+}
