@@ -234,8 +234,8 @@ class BoardsConfiguratorSheetComponentLayout {
     */
     setBoardWidthToAuto({ index, minWidth }) {
         var boardAtIndexCustomValue = this.customWidthFractions[index]
-        var isBoardCustom = boardAtIndexCustomValue === undefined || boardAtIndexCustomValue == null
-        if (!isBoardCustom) {return}
+        var isBoardAuto = boardAtIndexCustomValue === undefined || boardAtIndexCustomValue == null
+        if (isBoardAuto) {return}
         delete this.customWidthFractions[index]
     }
     //#endregion
