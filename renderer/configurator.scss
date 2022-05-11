@@ -1,0 +1,873 @@
+//#region Fonts
+$sans: -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+
+/**
+ * Helvetica Neue Normal
+*/
+
+$helvetica-neue: HelveticaNeue,
+  Helvetica Neue,
+  HelveticaNeueRoman,
+  HelveticaNeue-Roman,
+  Helvetica Neue Roman,
+  $sans;
+
+@mixin helvetica-neue() {
+  font-family: $helvetica-neue;
+}
+
+// Black
+$helvetica-neue-black: HelveticaNeueBlack,
+  HelveticaNeue-Black,
+  Helvetica Neue Black,
+  HelveticaNeue,
+  Helvetica Neue,
+  Roboto-Black,
+  Roboto Black,
+  Arial Black,
+  $sans;
+
+@mixin helvetica-neue-black() {
+  font-family: $helvetica-neue-black;
+  font-weight: 900;
+}
+
+// Heavy
+$helvetica-neue-heavy: HelveticaNeueHeavy,
+  HelveticaNeue-Heavy,
+  Helvetica Neue Heavy,
+  HelveticaNeue,
+  Helvetica Neue,
+  Arial Black,
+  $sans;
+
+@mixin helvetica-neue-heavy() {
+  font-family: $helvetica-neue-heavy;
+  font-weight: 800;
+}
+
+// Bold
+$helvetica-neue-bold: HelveticaNeueBold,
+  HelveticaNeue-Bold,
+  Helvetica Neue Bold,
+  HelveticaNeue,
+  Helvetica Neue,
+  $sans;
+
+@mixin helvetica-neue-bold() {
+  font-family: $helvetica-neue-bold;
+  font-weight: 700;
+}
+
+// Medium
+$helvetica-neue-medium: HelveticaNeueMedium,
+  HelveticaNeue-Medium,
+  Helvetica Neue Medium,
+  HelveticaNeue,
+  Helvetica Neue,
+  $sans;
+
+@mixin helvetica-neue-medium() {
+  font-family: $helvetica-neue-medium;
+  font-weight: 500;
+}
+
+$helvetica-neue-light: HelveticaNeueLight,
+  HelveticaNeue-Light,
+  Helvetica Neue Light,
+  HelveticaNeue,
+  Helvetica Neue,
+  Roboto-Light,
+  Roboto Light,
+  $sans;
+
+@mixin helvetica-neue-light() {
+  font-family: $helvetica-neue-light;
+  font-weight: 300;
+}
+
+$helvetica-neue-thin: HelveticaNeueThin,
+  HelveticaNeue-Thin,
+  Helvetica Neue Thin,
+  HelveticaNeue,
+  Helvetica Neue,
+  $sans;
+
+@mixin helvetica-neue-thin() {
+  font-family: $helvetica-neue-thin;
+  font-weight: 200;
+}
+
+$helvetica-neue-ultralight: HelveticaNeueUltraLight,
+  HelveticaNeue-Ultra-Light,
+  Helvetica Neue Ultra Light,
+  HelveticaNeue,
+  Helvetica Neue,
+  $sans;
+
+@mixin helvetica-neue-thin() {
+  font-family: $helvetica-neue-ultralight;
+  font-weight: 100;
+}
+
+//#endregion
+
+//#region Basics 
+$screen-inset: 27px;
+$dark-color: #111111;
+
+#resources {
+  display: none;
+}
+
+.rotated {
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -webkit-transform: rotate(180deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
+}
+
+@mixin disable-select {
+  user-select: none;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+}
+
+body {
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  background-color: #F6F6F6;
+
+  scroll-behavior: none;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+
+  label {
+    @include disable-select();
+    color: $dark-color;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.content,
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.content {
+  position: fixed;
+}
+
+.overlay {
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+//#endregion
+
+//#region Inputs 
+$outline-color: #E5E5E5;
+$outline-width: 1pt;
+$pill-button-height: 39px;
+
+
+@mixin control {
+  border: solid $outline-width $outline-color;
+  outline: none;
+  background-color: white;
+  border-radius: 8px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+}
+
+@mixin pill-button-text {
+  @include helvetica-neue-medium();
+  @include disable-select();
+  font-size: 14.5px;
+  pointer-events: none;
+}
+
+@mixin pill-button-svg {
+  $svg-width: 14px;
+  $svg-height: 12.7px;
+  width: $svg-width;
+  height: $svg-height;
+  min-width: $svg-width;
+  min-height: $svg-height;
+  display: flex;
+}
+
+@mixin pill-button {
+  @include control();
+  @include pill-button-text();
+  height: $pill-button-height;
+  border-radius: 100em;
+  cursor: pointer;
+  pointer-events: all;
+  padding: 0px 19px;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 9px;
+
+  label {
+    @include pill-button-text();
+  }
+
+  svg {
+    @include pill-button-svg()
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+@mixin pill-button-large-icon {
+  @include pill-button();
+
+  svg {
+    $svg-width: 20.5px;
+    $svg-height: 16.4px;
+    width: $svg-width;
+    height: $svg-height;
+    min-width: $svg-width;
+    min-height: $svg-height;
+  }
+
+}
+
+
+//#endregion
+
+//#region Top Overlay
+#configurator-top-overlay {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Leading */
+#overlay-texts-container {
+  height: min-content;
+  display: grid;
+  row-gap: 0px;
+  width: 46%;
+  position: relative;
+  top: $screen-inset;
+  left: $screen-inset;
+
+  &>label:first-child {
+    @include helvetica-neue-bold();
+    font-size: 3.4em;
+  }
+
+  &>label:last-child {
+    @include helvetica-neue-medium();
+    font-size: 1.2em;
+  }
+}
+
+/* Trailing  */
+#overlay-buttons-container {
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: $screen-inset;
+  padding-right: $screen-inset;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 13px;
+
+  button {
+    @include pill-button()
+  }
+
+  button:first-child {
+    @include pill-button-large-icon();
+    width: $pill-button-height;
+  }
+}
+
+//#endregion
+
+// ----- Sheet -----
+//#region Sheet Overlay 
+#configurator-sheet-overlay {
+  width: 100%;
+  height: 100vh;
+  align-items: flex-end;
+}
+
+#configurator-sheet {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 180px;
+  overflow-y: hidden;
+  padding-top: 19px;
+  pointer-events: all;
+}
+
+//#endregion
+
+//#region Sheet Layer Headered
+#configurator-sheet-headered {
+  padding: 0px $screen-inset;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#configurator-sheet-header {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 25% auto 25%;
+  width: 100%;
+  height: $pill-button-height;
+  max-height: $pill-button-height;
+  align-items: center;
+  overflow: visible;
+
+  button {
+    @include pill-button();
+  }
+
+  // The Stage Navigator (Storlek 1/6) 
+  &>div {
+    display: flex;
+    justify-content: center;
+
+    &>div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: min-content;
+      width: 80%;
+      max-width: 400px;
+
+      // Arrow left/right
+      &>svg {
+        width: 25px;
+        height: 17px;
+        pointer-events: all;
+        cursor: pointer;
+      }
+
+      &>div {
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: 9px;
+
+        label {
+          @include helvetica-neue-medium();
+          font-size: 1.3em;
+        }
+
+        // Title 
+        label:first-child {
+          letter-spacing: 0.6px;
+        }
+
+        // Stage (1/5) indicator Label 
+        label:last-child {
+          letter-spacing: 2px;
+          color: #BDBDBD;
+        }
+      }
+    }
+  }
+
+  // Leading Container
+  &>div:first-child {
+    justify-content: start;
+
+    &>div {
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 18px;
+
+      justify-content: start;
+      width: auto;
+      max-width: none;
+
+      // Collapse/Expand Button
+      &>button:first-child {
+        svg {
+          width: 18px;
+          height: 20px;
+        }
+      }
+    }
+  }
+
+  // Trailing Container
+  &>div:last-child {
+    justify-content: end;
+  }
+}
+
+//#endregion
+
+// ----- Sheet Component -----
+//#region Boards Component 
+.boards-configurator-sheet-component {
+  $accent-color: #D1BC96;
+  $small-input-foot-height: 8px;
+  $small-input-height: 30px;
+  $small-input-text-color: #C3C4C4;
+  $small-input-border-color: #E5E5E5;
+  $small-input-border: solid 1px $small-input-border-color;
+  $input-height: 30px;
+  $plus-button-width: 37px;
+
+  .dimmed {
+    opacity: 0.3;
+  }
+
+  @mixin Input {
+    @include helvetica-neue-medium();
+    text-align: center;
+    border-radius: 100em;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 1.5s;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  @mixin SmallInput {
+    @include Input();
+    color: $small-input-text-color;
+    font-size: 0.8em;
+    padding: 0px 15px 0px 15px;
+    border: $small-input-border;
+    height: $small-input-height;
+  }
+
+  @mixin SmallInputContainer {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: min-content auto min-content auto min-content;
+    align-items: center;
+
+    &>div:first-child,
+    &>div:last-child {
+      border-left: $small-input-border;
+      height: $small-input-foot-height;
+    }
+
+    &>div:nth-child(4),
+    &>div:nth-child(2) {
+      border-bottom: $small-input-border
+    }
+
+    &>span {
+      @include SmallInput();
+    }
+  }
+
+
+  @mixin LargeInput {
+    @include Input();
+    font-size: 1.14em;
+    color: white;
+    background-color: $accent-color;
+  }
+
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    pointer-events: all;
+    cursor: pointer;
+  }
+
+  span:focus {
+    outline: none;
+  }
+
+  // Header
+  &>div:first-child {
+    width: 100%;
+    display: flex;
+    transition: height 0.5s, opacity 0.25s;
+    height: $pill-button-height;
+    
+    // Value Change Container Remove ----------- Auto or 40mm
+    &>div:first-child {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      button {
+        @include pill-button();
+        transition: background-color 0.1s, color 0.1s;
+      }
+
+      button.selected {
+        background-color: $accent-color;
+        color: white;
+        border-color: transparent;
+      }
+
+      &>div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        &>div {
+          display: grid;
+          column-gap: 16px;
+          grid-auto-flow: column;
+          align-items: center;
+
+          &>label {
+            font-family: $helvetica-neue-black;
+            font-size: 0.93em;
+            color: #C3C3C3;
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+    
+    // Add Board Container
+    &>div {
+
+      button {
+        @include pill-button()
+      }
+    }
+
+  }
+
+  /* 
+    Grid containing (vertical)
+    - Add buttons grid (horizontal)
+    - Boards grid (horizontal)
+    - Total width/depth, grid (horizontal) 
+  */
+  &>div:nth-child(2)::-webkit-scrollbar {
+    display: none;
+
+  }
+
+  &>div:nth-child(2) {
+    width: calc(100vw - 54px);
+    left: 0px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &>div {
+      height: 100%;
+      width: min-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &>div {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        height: min-content;
+
+        // Add buttons
+        &>div:first-child {
+          height: 35px;
+          overflow: hidden;
+          transition: height 0.15s;
+          display: grid;
+          grid-template-columns: $plus-button-width auto $plus-button-width;
+
+          svg {
+            pointer-events: all;
+            cursor: pointer;
+            height: 35px;
+            width: min-content;
+          }
+
+          svg:active {
+            opacity: 0.5;
+          }
+
+          // Add on spacing
+          &>div:nth-child(2) {
+            display: flex;
+
+            &>div {
+              position: relative;
+              width: 100%;
+              &>svg {
+                position: absolute;
+                
+              }
+            }
+          }
+        }
+
+        // Boards
+        &>div:nth-child(2) {
+          display: flex;
+          width: 100%;
+          height: max-content;
+          justify-items: center;
+          align-items: center;
+          padding-bottom: 23px;
+
+          &>div {
+            width: 100%;
+            margin: 0px $plus-button-width;
+            max-height: 140px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: min-content 126px;
+
+            &>.boards-component-board-input {
+              position: relative;
+
+              // Board Number Indicator
+              &>div {
+                $boarder-width: 2px;
+                position: absolute;
+                right: -2%;
+                top: -26%;
+                $diameter: 19px;
+                width: $diameter;
+                height: $diameter;
+                background-color: $accent-color;
+                display: flex;
+                border-radius: 100em;
+                border: solid $boarder-width white;
+
+                &>label {
+                  @include helvetica-neue-black();
+                  position: relative;
+                  height: min-content;
+                  width: min-content;
+                  left: 50%;
+                  top: 50%;
+                  font-size: 0.74em;
+                  color: white;
+                  transform: translate(-50%, -50%);
+                }
+              }
+
+              // Input
+              &>span {
+                @include LargeInput();
+                padding: 10.3px 22px;
+                min-width: 46px;
+                text-align: center;
+                align-items: center;
+                align-content: center;
+                justify-content: center;
+              }
+              
+              &>span.placeholder {
+                color: #E3D6BF;
+              }
+            }
+
+            &>.boards-component-spacing-input {
+              @include SmallInputContainer();
+              margin: 0px 11px;
+            }
+          }
+        }
+
+        // Total Width
+        &>div:last-child {
+          @include SmallInputContainer();
+          margin: 0px $plus-button-width;
+        }
+      }
+    }
+  }
+
+  // Cancel or Confirm
+  &>div:last-child {
+    height: 0px;
+    transition: height 0.5s, margin 0.5s;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    overflow: hidden;
+
+    &>div {
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 18px;
+
+      &>button {
+        $confirm-cancel-button-diameter: 30px;
+        height: $confirm-cancel-button-diameter;
+        width: $confirm-cancel-button-diameter;
+        background-color: transparent;
+        padding: 0px;
+        margin: 0px;
+        border: $small-input-border;
+        border-radius: 100em;
+        position: relative;
+
+
+        &>svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 12px;
+          height: 12px;
+          align-items: center;
+          justify-content: center;
+          align-content: center;
+          justify-items: center;
+        }
+      }
+
+      &>button.disabled {
+        pointer-events: none;
+
+        &>svg {
+          opacity: 0.22;
+        }
+      }
+
+      &>button:active {
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+//#endregion
+
+// ----- Sheet Content -----
+//#region Sheet Content
+#configurator-sheet-content-container {
+  display: flex;
+  height: 100%;
+}
+
+//#endregion
+
+//#region Sheet Content - Choose Base
+#configurator-sheet-content-choosebase {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+
+  &>div {
+    height: 59.5%;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 40px;
+
+    &>button {
+      @include control();
+      height: 100%;
+      width: 240px;
+      display: grid;
+      row-gap: 9px;
+
+      &>div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        pointer-events: none;
+        cursor: none;
+
+        &>svg {
+          height: 52px;
+        }
+      }
+
+      &>label {
+        @include helvetica-neue();
+        font-size: 1.08em;
+        color: #959595;
+        pointer-events: none;
+        cursor: none;
+
+      }
+    }
+
+    &>button.selected {
+      border-color: #D0BC96;
+    }
+  }
+}
+
+//#endregion
+
+//#region Sheet Content - Top Deck
+#configurator-sheet-content-topdeck {
+  width: 100%;
+  height: 100%;
+}
+
+//#endregion
