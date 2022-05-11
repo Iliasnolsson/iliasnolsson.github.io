@@ -1,77 +1,349 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Konfigurator</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="configurator.css">
-    
+    <meta name="theme-color" content="#F6F6F6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/website/css/configurator.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js"></script>
 
+    <!------- Renderer ------->
+    <script src="js/renderer/configurator_renderer.js"></script>
     <!-- Pallet - Fundamentals -->
     <script src="js/renderer/pallet/fundamentals/pallet_rectangle.js"></script>
-
     <!-- Pallet - Fundamentals - List -->
     <script src="js/renderer/pallet/fundamentals/list/pallet_rectangle_list.js"></script>
     <script src="js/renderer/pallet/fundamentals/list/pallet_rectangle_list_rectangle_layout.js"></script>
     <script src="js/renderer/pallet/fundamentals/list/pallet_rectangle_list_layout.js"></script>
-
     <!-- Pallet - Fundamentals - Grid -->
     <script src="js/renderer/pallet/fundamentals/grid/pallet_rectangle_grid.js"></script>
     <script src="js/renderer/pallet/fundamentals/grid/pallet_rectangle_grid_layout.js"></script>
     <script src="js/renderer/pallet/fundamentals/grid/pallet_rectangle_grid_column.js"></script>
     <script src="js/renderer/pallet/fundamentals/grid/pallet_rectangle_grid_column_layout.js"></script>
-    
-    <!-- Pallet -->
-    <script src="js/renderer/pallet/block_pallet.js"></script>
+    <!-- Pallet - Block Pallet -->
+    <script src="js/renderer/pallet/block_pallet/block_pallet.js"></script>
+    <!-- Pallet - Block Pallet - Description -->
+    <script src="js/renderer/pallet/block_pallet/description/block_pallet_blocks_description.js"></script>
+    <script src="js/renderer/pallet/block_pallet/description/block_pallet_bottomdeck_description.js"></script>
+    <script src="js/renderer/pallet/block_pallet/description/block_pallet_description.js"></script>
+    <script src="js/renderer/pallet/block_pallet/description/block_pallet_topdeck_description.js"></script>
+    <!-- Transform Preferences -->
+    <script src="js/renderer/transform_preferences/rotation_configurator_renderer_preferences.js"></script>
+    <script src="js/renderer/transform_preferences/scale_configurator_renderer_preferences.js"></script>
+    <script src="js/renderer/transform_preferences/transform_configurator_renderer_preferences.js"></script>
 
-    <!-- Configurator - Other -->
+    <!------- Other ------->
     <script src="js/other/corner_radius.js"></script>
     <script src="js/other/disposable_event_listener.js"></script>
+    <script src="js/other/Tween.js"></script>
 
-    <!-- Configurator -->
-    <script src="js/renderer/configurator_renderer.js"></script>
+    <!------- Sheet ------->
+    <script src="js/sheet/configurator_sheet.js"></script>
+    <script src="js/sheet/configurator_sheet_size.js"></script>
+    <!-- Component - Boards -->
+    <script src="js/sheet/components/boards/boards_configurator_sheet_component.js"></script>
+    <script src="js/sheet/components/boards/boards_configurator_sheet_component_mode.js"></script>
+    <script src="js/sheet/components/boards/boards_configurator_sheet_component_layout.js"></script>
+    <!-- Content -->
+    <script src="js/sheet/content/choose_base_configurator_sheet_content.js"></script>
+    <script src="js/sheet/content/topdeck_configurator_sheet_content.js"></script>
+    <script src="js/sheet/content/bottomdeck_configurator_sheet_content.js"></script>
+    <script src="js/sheet/content/blocks_configurator_sheet_content.js"></script>
+    <!-- Preferences-->
+    <script src="js/sheet/preferences/configurator_sheet_content_preferences.js"></script>
+    <script src="js/sheet/preferences/configurator_sheet_component_preferences.js"></script>
+
+    <!------- Configurator ------->
     <script src="js/configurator_helpers.js"></script>
+    <script src="js/configurator_stage.js"></script>
     <script src="js/configurator.js"></script>
     <script src="js/helpers.js"></script>
-
-    <!-- Configurator - Variable List -->
-    <script src="js/variable_list/pallet_variable_list.js"></script>
-    <script src="js/variable_list/pallet_variable_list_item.js"></script>
-    <script src="js/variable_list/block_pallet_variable_list.js"></script>
 </head>
+
 <body class="container">
-    <div id="configurator-renderer-canvas-parent" class="content">
-        <div id="drag-to-rotate-labe-wrapper">
-            <label id="drag-to-rotate-label">Dra för att rotera</label>
-        </div>
-        <canvas id="configurator-renderer-canvas"></canvas>
-    </div>
-    <div id="configurator-overlay" class="overlay">
-        <div id="configurator-texts-container">
-            <label class="title-label">Renderer</label>
-            <label class="body-label">Ett system för att bygga upp en kloss träpall genom ett flertal parametrar så som djup, kloss höjd, antal klossar osv. Uppbyggd utav PalletRectangle. </label>
-        </div>
-        <div id="configurator-trailing-container">
+    <div id="resources">
+        <svg id="standard-pallet-svg" width="100%" height="100%" viewBox="0 0 71 47" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+            xmlns:serif="http://www.serif.com/"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+            <g>
+                <rect id="rect3701-7-1-5" x="32.298" y="0" width="5.872" height="46.881"
+                    style="fill:rgb(186,171,143);fill-rule:nonzero;" />
+                <rect id="rect3701-7-1" x="64.597" y="0" width="5.872" height="46.881"
+                    style="fill:rgb(186,171,143);fill-rule:nonzero;" />
+                <rect id="rect3701-7" x="-0" y="0" width="5.872" height="46.881"
+                    style="fill:rgb(186,171,143);fill-rule:nonzero;" />
+                <rect id="rect3701-0" x="-0" y="0" width="70.469" height="5.86"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-01" serif:id="rect3701-0" x="-0" y="10.255" width="70.469" height="5.86"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-02" serif:id="rect3701-0" x="-0" y="20.511" width="70.469" height="5.86"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-03" serif:id="rect3701-0" x="-0" y="30.766" width="70.469" height="5.86"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-04" serif:id="rect3701-0" x="-0" y="41.021" width="70.469" height="5.86"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+            </g>
+        </svg>
+        <svg id="eur-pallet-svg" width="100%" height="100%" viewBox="0 0 71 47" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+            xmlns:serif="http://www.serif.com/"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+            <g>
+                <rect id="rect3701-7-1-5" x="31.254" y="7.371" width="8.256" height="32.139"
+                    style="fill:rgb(181,164,134);fill-rule:nonzero;" />
+                <rect id="rect3701-7-1" x="62.214" y="7.371" width="8.256" height="32.139"
+                    style="fill:rgb(181,164,134);fill-rule:nonzero;" />
+                <rect id="rect3701-7" x="-0" y="7.371" width="8.256" height="32.139"
+                    style="fill:rgb(181,164,134);fill-rule:nonzero;" />
+                <path id="path3772"
+                    d="M-0,38.625L70.469,38.625L70.469,45.407L68.995,46.881L1.474,46.881L-0,45.407L-0,38.625Z"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <path id="rect3701" d="M70.469,8.403L-0,8.403L-0,1.474L1.474,0L68.995,0L70.469,1.474L70.469,8.403Z"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-0" x="-0" y="11.204" width="70.469" height="5.602"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-0-7" x="-0" y="30.37" width="70.469" height="5.602"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-0-6" x="-0" y="19.46" width="70.469" height="8.256"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+            </g>
+        </svg>
+        <svg id="strong-standard-pallet-svg" width="100%" height="100%" viewBox="0 0 71 47" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+            xmlns:serif="http://www.serif.com/"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+            <g>
+                <rect id="rect3701-7-1-5" x="31.865" y="0" width="6.739" height="46.881"
+                    style="fill:rgb(186,171,143);fill-rule:nonzero;" />
+                <rect id="rect3701-7-1" x="63.73" y="0" width="6.739" height="46.881"
+                    style="fill:rgb(186,171,143);fill-rule:nonzero;" />
+                <rect id="rect3701-7" x="0" y="0" width="6.739" height="46.881"
+                    style="fill:rgb(186,171,143);fill-rule:nonzero;" />
+                <rect id="rect3701-0" x="0" y="20.071" width="70.469" height="6.739"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-01" serif:id="rect3701-0" x="0" y="10.036" width="70.469" height="6.739"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-02" serif:id="rect3701-0" x="0" y="0" width="70.469" height="6.739"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-03" serif:id="rect3701-0" x="0" y="30.107" width="70.469" height="6.739"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+                <rect id="rect3701-04" serif:id="rect3701-0" x="0" y="40.142" width="70.469" height="6.739"
+                    style="fill:rgb(208,188,150);fill-rule:nonzero;" />
+            </g>
+        </svg>
+        <svg id="plus-svg" width="100%" height="100%" viewBox="0 0 13 13" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+            xmlns:serif="http://www.serif.com/"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+            <text x="-1.961px" y="11.895px" style="font-family:'SFPro-Regular', 'SF Pro';font-size:15.747px;">􀅼</text>
+        </svg>
+        <div class="boards-component-board-input" id="boards-component-board-input-reusable">
             <div>
-                <img id="x-y-z-icon-image" src="resources/images/x-y-z-icon.png">
+                <label class="board-component-board-input-number-label">1</label>
             </div>
-            <div id="configurator-variables-list">
-                <div class="configurator-variables-list-item">
-                    <label>StingersHeight</label>
-                    <div>
-                        <span contenteditable="true">22</span>
+            <span>Auto</span>
+        </div>
+        <div class="boards-component-spacing-input" id="boards-component-spacing-input-reusable">
+            <div></div>
+            <div></div>
+            <span>800</span>
+            <div></div>
+            <div></div>
+        </div>
+        <!-- Board Component - Add handle SVG for spacing  -->
+        <svg id="board-component-addhandle-spacing-svg" width="100%" height="100%" viewBox="0 0 39 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+            <g>
+                <path d="M38.106,10.885C38.106,4.873 33.233,0 27.222,0C22.15,0 15.957,0 10.885,0C4.873,0 -0,4.873 0,10.885C0,13.093 0,15.364 0,17.32C-0,21.123 1.773,24.708 4.795,27.016C8.259,29.662 12.997,33.28 15.849,35.459C17.741,36.904 20.366,36.904 22.258,35.459C25.11,33.28 29.847,29.662 33.312,27.016C36.333,24.708 38.106,21.123 38.106,17.32L38.106,10.885ZM36.906,10.885C36.906,5.536 32.57,1.2 27.222,1.2C22.15,1.2 15.957,1.2 10.885,1.2C5.536,1.2 1.2,5.536 1.2,10.885C1.2,13.093 1.2,15.364 1.2,17.32C1.2,20.749 2.799,23.981 5.523,26.062C8.988,28.708 13.725,32.327 16.577,34.505C18.039,35.622 20.067,35.622 21.529,34.505C24.381,32.327 29.119,28.708 32.583,26.062C35.308,23.981 36.906,20.749 36.906,17.32L36.906,10.885Z" style="fill:rgb(229,229,229);"/>
+                <path d="M12.581,15.839C12.581,16.119 12.681,16.357 12.879,16.553C13.077,16.75 13.314,16.848 13.59,16.848L18.211,16.848L18.211,21.469C18.211,21.743 18.309,21.979 18.504,22.178C18.7,22.376 18.938,22.475 19.217,22.475C19.497,22.475 19.736,22.376 19.934,22.178C20.132,21.979 20.231,21.743 20.231,21.469L20.231,16.848L24.847,16.848C25.121,16.848 25.357,16.75 25.556,16.553C25.754,16.357 25.853,16.119 25.853,15.839C25.853,15.56 25.754,15.321 25.556,15.122C25.357,14.924 25.121,14.825 24.847,14.825L20.231,14.825L20.231,10.212C20.231,9.936 20.132,9.699 19.934,9.501C19.736,9.303 19.497,9.204 19.217,9.204C18.938,9.204 18.7,9.303 18.504,9.501C18.309,9.699 18.211,9.936 18.211,10.212L18.211,14.825L13.59,14.825C13.314,14.825 13.077,14.924 12.879,15.122C12.681,15.321 12.581,15.56 12.581,15.839Z" style="fill:rgb(195,195,195);fill-rule:nonzero;"/>
+            </g>
+        </svg>
+        <!-- Boards Component -->
+        <div class="boards-configurator-sheet-component">
+            <!-- Header -->
+            <div id="boards-component-header">
+                <!-- Value Change Container-->
+                <div id="boards-configurator-sheet-component-valuechange-header-container">
+                    <!-- Board Container -->
+                    <div id="boards-component-header-board-valuechange-container">
+                        <div>
+                            <button>Ta bort</button>
+                        </div>
+                        <div>
+                            <button id="boards-component-header-board-valuechange-auto">Auto</button>
+                            <label>eller</label>
+                            <button id="boards-component-header-board-valuechange-custom">40mm</button>
+                        </div>
+                    </div>
+                    <!-- Spacing Container -->
+                    <div id="boards-component-header-spacing-valuechange-container">
                     </div>
                 </div>
-                <div class="configurator-variables-list-item">
-                    <label>StingersSpacingFraction</label>
+                <!-- Add Board Container -->
+                <div id="boards-configurator-sheet-component-addboard-header-container">
                     <div>
-                        <span contenteditable="true">50</span>
+                        <button id="boards-component-addboard-header-cancel-button">Avbryt</button>
                     </div>
+                </div>
+            </div>
+
+            <!-- Add Board Buttons Grid -->
+            <!-- Boards Grid -->
+            <!-- Total Grid -->
+            <div>
+                <div id="boards-component-scrollable-container">
+                    <div id="boards-component-addbuttons-boards-totalwidth-grid">
+                        <!-- Add Board Buttons-->
+                        <div id="boards-component-addbuttons-container">
+                            <div id="boards-component-addbuttons-left-container">
+                                <svg id="boards-component-addbuttons-left-handle" width="100%" height="100%" viewBox="0 0 39 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                                    <g>
+                                        <path d="M0,12.2L0,18.242C-0,23.742 3.679,28.561 8.985,30.011C14.573,31.538 22.002,33.568 27.745,35.137C30.211,35.811 32.85,35.296 34.882,33.745C36.914,32.194 38.106,29.783 38.106,27.227C38.106,22.63 38.106,17.028 38.106,12.2C38.106,8.965 36.821,5.861 34.533,3.573C32.245,1.285 29.142,-0 25.906,0C21.551,0 16.555,0 12.2,0C8.965,-0 5.861,1.285 3.573,3.573C1.285,5.861 0,8.965 0,12.2ZM1.2,12.2C1.2,9.283 2.359,6.485 4.422,4.422C6.485,2.359 9.283,1.2 12.2,1.2C16.555,1.2 21.551,1.2 25.906,1.2C28.823,1.2 31.621,2.359 33.684,4.422C35.747,6.485 36.906,9.283 36.906,12.2C36.906,17.028 36.906,22.63 36.906,27.227C36.906,29.409 35.888,31.467 34.154,32.791C32.419,34.115 30.166,34.554 28.061,33.979C22.318,32.41 14.89,30.38 9.301,28.853C4.518,27.546 1.2,23.201 1.2,18.242L1.2,12.2Z" style="fill:rgb(229,229,229);"/>
+                                        <path d="M25.525,15.839C25.525,16.119 25.426,16.357 25.228,16.553C25.029,16.75 24.792,16.848 24.516,16.848L19.895,16.848L19.895,21.469C19.895,21.743 19.798,21.979 19.602,22.178C19.406,22.376 19.169,22.475 18.889,22.475C18.61,22.475 18.371,22.376 18.173,22.178C17.974,21.979 17.875,21.743 17.875,21.469L17.875,16.848L13.26,16.848C12.985,16.848 12.749,16.75 12.551,16.553C12.353,16.357 12.254,16.119 12.254,15.839C12.254,15.56 12.353,15.321 12.551,15.122C12.749,14.924 12.985,14.825 13.26,14.825L17.875,14.825L17.875,10.212C17.875,9.936 17.974,9.699 18.173,9.501C18.371,9.303 18.61,9.204 18.889,9.204C19.169,9.204 19.406,9.303 19.602,9.501C19.798,9.699 19.895,9.936 19.895,10.212L19.895,14.825L24.516,14.825C24.792,14.825 25.029,14.924 25.228,15.122C25.426,15.321 25.525,15.56 25.525,15.839Z" style="fill:rgb(195,195,195);fill-rule:nonzero;"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div>
+                                <div id="boards-component-addbuttons-spacing-container">
+                                 
+
+                                </div>
+                            </div>
+                            <div id="boards-component-addbuttons-right-container">
+                                <svg id="boards-component-addbuttons-right-handle" width="100%" height="100%" viewBox="0 0 39 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                                    <g>
+                                        <path d="M38.106,12.2L38.106,18.242C38.106,23.742 34.427,28.561 29.122,30.011C23.533,31.538 16.105,33.568 10.362,35.137C7.896,35.811 5.256,35.296 3.224,33.745C1.192,32.194 -0,29.783 0,27.227C0,22.63 0,17.028 0,12.2C0,8.965 1.285,5.861 3.573,3.573C5.861,1.285 8.965,-0 12.2,0C16.555,0 21.551,0 25.906,0C29.142,-0 32.245,1.285 34.533,3.573C36.821,5.861 38.106,8.965 38.106,12.2ZM36.906,12.2C36.906,9.283 35.747,6.485 33.684,4.422C31.621,2.359 28.823,1.2 25.906,1.2C21.551,1.2 16.555,1.2 12.2,1.2C9.283,1.2 6.485,2.359 4.422,4.422C2.359,6.485 1.2,9.283 1.2,12.2C1.2,17.028 1.2,22.63 1.2,27.227C1.2,29.409 2.218,31.467 3.953,32.791C5.687,34.115 7.94,34.554 10.045,33.979C15.788,32.41 23.217,30.38 28.805,28.853C33.589,27.546 36.906,23.201 36.906,18.242L36.906,12.2Z" style="fill:rgb(229,229,229);"/>
+                                        <path d="M12.581,15.839C12.581,16.119 12.681,16.357 12.879,16.553C13.077,16.75 13.314,16.848 13.59,16.848L18.211,16.848L18.211,21.469C18.211,21.743 18.309,21.979 18.504,22.178C18.7,22.376 18.938,22.475 19.217,22.475C19.497,22.475 19.736,22.376 19.934,22.178C20.132,21.979 20.231,21.743 20.231,21.469L20.231,16.848L24.847,16.848C25.121,16.848 25.357,16.75 25.556,16.553C25.754,16.357 25.853,16.119 25.853,15.839C25.853,15.56 25.754,15.321 25.556,15.122C25.357,14.924 25.121,14.825 24.847,14.825L20.231,14.825L20.231,10.212C20.231,9.936 20.132,9.699 19.934,9.501C19.736,9.303 19.497,9.204 19.217,9.204C18.938,9.204 18.7,9.303 18.504,9.501C18.309,9.699 18.211,9.936 18.211,10.212L18.211,14.825L13.59,14.825C13.314,14.825 13.077,14.924 12.879,15.122C12.681,15.321 12.581,15.56 12.581,15.839Z" style="fill:rgb(195,195,195);fill-rule:nonzero;"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- Boards Grid (board...spacing...board......)-->
+                        <div>
+                            <div id="boards-component-boards-grid"></div>
+                        </div>
+                        <!-- Total Width (one giant spacing input) -->
+                        <div id="boards-component-boards-total-width-input">
+                            <div></div>
+                            <div></div>
+                            <span>800</span>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cancel/Confirm -->
+            <div id="boards-component-cancel-confirm-container">
+                <div>
+                    <button id="boards-configurator-sheet-component-cancel">
+                        <svg width="100%" height="100%" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                            <path d="M10.545,0L5.707,4.839L0.868,0L0,0.868L4.839,5.707L0,10.545L0.842,11.387L5.68,6.548L10.519,11.387L11.387,10.519L6.548,5.68L11.387,0.842L10.545,0Z"/>
+                        </svg>
+                    </button>
+                    <button id="boards-configurator-sheet-component-confirm">
+                        <svg width="100%" height="100%" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                            <path d="M0.633,6.588L5.074,11.411L12.287,0.633" style="fill:none;stroke:black;stroke-width:1.27px;"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="configurator-renderer-canvas-parent" class="content">
+        <div><canvas id="configurator-renderer-canvas"></canvas></div>
+    </div>
+    <div id="configurator-top-overlay" class="overlay">
+        <div id="overlay-texts-container">
+            <label>Ekatech</label>
+            <label id="overlay-subtitle">Konfigurator</label>
+        </div>
+        <div id="overlay-buttons-container">
+            <button>
+                <svg width="100%" height="100%" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                    <path
+                        d="M2.508,15.877L12.316,15.877C13.146,15.877 13.772,15.666 14.193,15.245C14.613,14.823 14.824,14.205 14.824,13.389L14.824,7.937L13.777,7.995L13.777,13.332C13.777,13.825 13.647,14.197 13.386,14.449C13.126,14.701 12.76,14.828 12.29,14.828L2.528,14.828C2.047,14.828 1.68,14.701 1.428,14.449C1.175,14.197 1.049,13.825 1.049,13.332L1.049,7.995L0,7.937L0,13.389C0,14.212 0.21,14.833 0.631,15.25C1.052,15.668 1.678,15.877 2.508,15.877ZM7.41,11.584C7.553,11.584 7.675,11.534 7.778,11.434C7.88,11.334 7.931,11.214 7.931,11.076L7.931,2.698L7.893,1.458L8.654,2.245L10.105,3.754C10.201,3.859 10.32,3.912 10.463,3.912C10.596,3.912 10.708,3.868 10.799,3.779C10.891,3.691 10.937,3.579 10.937,3.444C10.937,3.323 10.885,3.21 10.781,3.106L7.786,0.174C7.723,0.11 7.661,0.065 7.601,0.039C7.542,0.013 7.478,-0 7.41,-0C7.345,-0 7.282,0.013 7.223,0.039C7.163,0.065 7.099,0.11 7.032,0.174L4.032,3.106C3.932,3.21 3.882,3.323 3.882,3.444C3.882,3.579 3.925,3.691 4.013,3.779C4.101,3.868 4.214,3.912 4.353,3.912C4.499,3.912 4.62,3.859 4.714,3.754L6.161,2.245L6.931,1.455L6.893,2.698L6.893,11.076C6.893,11.214 6.944,11.334 7.046,11.434C7.148,11.534 7.27,11.584 7.41,11.584Z"
+                        style="fill-rule:nonzero;" />
+                </svg>
+            </button>
+            <button>Done</button>
+        </div>
+    </div>
+    <div id="configurator-sheet-overlay" class="overlay">
+        <div id="configurator-sheet">
+            <div id="configurator-sheet-headered">
+                <div id="configurator-sheet-header">
+                    <!-- Collapse/Expand Button -->
+                    <div>
+                        <div id="configurator-sheet-header-leading-container">
+                            <button id="configurator-sheet-header-collapse-expand-button">
+                                <svg width="100%" height="100%" viewBox="0 0 17 8" version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                                    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                                    <path d="M15.741,0.871L8.306,6.388L0.871,0.871"
+                                        style="fill:white;stroke:black;stroke-width:1.74px;" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <svg id="configurator-sheet-header-left-arrow" width="100%" height="100%"
+                                viewBox="0 0 15 13" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                                xmlns:serif="http://www.serif.com/"
+                                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                                <path
+                                    d="M0.026,5.912C0.011,5.958 0.002,6.007 0,6.058L0,6.087C0.002,6.138 0.011,6.187 0.026,6.233C0.049,6.299 0.086,6.362 0.138,6.417L5.441,11.989C5.631,12.189 5.948,12.197 6.148,12.006C6.348,11.816 6.356,11.499 6.165,11.3L1.666,6.572L14.246,6.572C14.522,6.572 14.746,6.348 14.746,6.072C14.746,5.796 14.522,5.572 14.246,5.572L1.666,5.572C2.911,4.264 6.165,0.845 6.165,0.845C6.356,0.645 6.348,0.328 6.148,0.138C5.948,-0.053 5.631,-0.045 5.441,0.155L0.138,5.727C0.086,5.782 0.049,5.845 0.026,5.912Z" />
+                            </svg>
+                            <div>
+                                <label id="configurator-sheet-header-title-label">Storlek</label>
+                                <label id="configurator-sheet-header-stage-label">1/6</label>
+                            </div>
+                            <svg id="configurator-sheet-header-right-arrow" width="100%" height="100%"
+                                viewBox="0 0 15 13" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                                xmlns:serif="http://www.serif.com/"
+                                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                                <path
+                                    d="M14.719,6.233C14.735,6.187 14.744,6.138 14.745,6.087L14.745,6.058C14.744,6.007 14.735,5.958 14.719,5.912C14.697,5.845 14.659,5.782 14.608,5.727L9.305,0.155C9.114,-0.045 8.798,-0.053 8.598,0.138C8.398,0.328 8.39,0.645 8.58,0.845L13.08,5.572L0.5,5.572C0.224,5.572 0,5.796 0,6.072C-0,6.348 0.224,6.572 0.5,6.572L13.079,6.572C11.835,7.88 8.58,11.3 8.58,11.3C8.39,11.499 8.398,11.816 8.598,12.006C8.798,12.197 9.114,12.189 9.305,11.989L14.608,6.417C14.659,6.362 14.697,6.299 14.719,6.233Z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- Menu Button -->
+                    <div>
+                        <button id="configurator-sheet-header-menu-button">
+                            <svg width="100%" height="100%" viewBox="0 0 12 10" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                                <path
+                                    d="M11.111,9.372L11.111,9.375C11.111,9.529 11.05,9.676 10.941,9.785C10.832,9.893 10.685,9.954 10.531,9.954L0.579,9.954C0.426,9.954 0.278,9.893 0.17,9.785C0.061,9.676 0,9.529 0,9.375C0,9.375 0,9.372 0,9.372C0,9.219 0.061,9.071 0.17,8.963C0.278,8.854 0.426,8.793 0.579,8.793L10.531,8.793C10.685,8.793 10.832,8.854 10.941,8.963C11.05,9.071 11.111,9.219 11.111,9.372ZM11.111,4.976L11.111,4.978C11.111,5.132 11.05,5.279 10.941,5.388C10.832,5.497 10.685,5.558 10.531,5.558L0.579,5.558C0.426,5.558 0.278,5.497 0.17,5.388C0.061,5.279 0,5.132 0,4.978C0,4.978 0,4.976 0,4.976C0,4.822 0.061,4.675 0.17,4.566C0.278,4.458 0.426,4.396 0.579,4.396L10.531,4.396C10.685,4.396 10.832,4.458 10.941,4.566C11.05,4.675 11.111,4.822 11.111,4.976ZM11.111,0.579L11.111,0.582C11.111,0.736 11.05,0.883 10.941,0.992C10.832,1.1 10.685,1.161 10.531,1.161L0.579,1.161C0.426,1.161 0.278,1.1 0.17,0.992C0.061,0.883 0,0.736 0,0.582C0,0.582 0,0.579 0,0.579C0,0.426 0.061,0.278 0.17,0.17C0.278,0.061 0.426,-0 0.579,0L10.531,0C10.685,-0 10.832,0.061 10.941,0.17C11.05,0.278 11.111,0.426 11.111,0.579Z" />
+                            </svg>
+                            <label>Meny</label>
+                        </button>
+                    </div>
+                </div>
+                <div id="configurator-sheet-content-container">
+                    <div id="configurator-sheet-content-choosebase">
+                        <div>
+
+                        </div>
+                    </div>
+                    <div id="configurator-sheet-content-topdeck"></div>
+                    <div id="configurator-sheet-content-bottomdeck"></div>
+                    <div id="configurator-sheet-content-blocks"></div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>

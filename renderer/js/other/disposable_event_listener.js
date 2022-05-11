@@ -1,8 +1,8 @@
 
-class Listener {
+class DisposableEventListener {
 
     static add({ target, eventType, eventHandler }) {
-        target.addEventListener(eventType, eventHandler, { passive: false })
+        target.addEventListener(eventType, eventHandler)
         return { dispose: () => target.removeEventListener(eventType, eventHandler) }
     }
 

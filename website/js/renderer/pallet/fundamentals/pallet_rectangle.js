@@ -32,22 +32,27 @@ class PalletRectangle {
 
     constructor() {
         this._showGrid = true
-        this._blackAndWhite = true
-        var material
+        this._blackAndWhite = false
 
-        if (this._blackAndWhite) {
-            material = new THREE.MeshStandardMaterial({color: 0x000000});
-        } else {
-            const loader = new THREE.TextureLoader();
-            const mapTexture = loader.load("resources/textures/PLANK_2K_Color.jpeg");
-            const normalTexture = loader.load("resources/textures/PLANK_2K_Normal.jpeg")
-            const roughnessTexture = loader.load("resources/textures/PLANK_2K_Roughness.jpeg")
-            material = new THREE.MeshStandardMaterial({map: mapTexture, normalMap: normalTexture, roughnessMap: roughnessTexture});
-        }
+        const loader = new THREE.TextureLoader();
+        const mapTexture = loader.load("resources/textures/PLANK_2K_Color.jpeg");
+        const normalTexture = loader.load("resources/textures/PLANK_2K_Normal.jpeg")
+        const roughnessTexture = loader.load("resources/textures/PLANK_2K_Roughness.jpeg")
+        
+        var material = new THREE.MeshPhongMaterial({
+            color: 0xCEB88E,
+            shininess: 0,
+            reflectivity: 0
+        })
 
-        this.object = new THREE.Mesh(new THREE.BufferGeometry(), material);
+        //var material = new THREE.MeshStandardMaterial({map: mapTexture, normalMap: normalTexture, roughnessMap: roughnessTexture});
 
-        this.object.name = "Rectangle"
+        this.object = new THREE.Group()
+        this.meshObject = new THREE.Mesh(new THREE.BufferGeometry(), material);
+        this.object.add(this.meshObject)
+
+        this.meshObject.name = "Rectangle"
+        this.meshObject.renderOrder = 11000
 
         // Undefined Prevention
         this._isGeometryReloadNeeded = false;
@@ -381,18 +386,7 @@ class PalletRectangle {
             newGeometry.computeFaceNormals();
             newGeometry.computeVertexNormals();
         }
-        this.object.geometry = newGeometry
-
-        if (this._showGrid) {
-            if (this._wireframe !== undefined) {
-                objectRemoveFromParent(this._wireframe)
-            } 
-            // wireframe
-            const wireframeGeometry = new THREE.WireframeGeometry(this.object.geometry);
-            const wireframeMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 1.5});
-            this._wireframe = new THREE.LineSegments(wireframeGeometry, wireframeMaterial);
-            this.object.add(this._wireframe);
-        }
+        this.meshObject.geometry = newGeometry
 
     }
 
