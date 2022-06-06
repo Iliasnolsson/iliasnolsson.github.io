@@ -70,7 +70,7 @@ class ProjectsHomeSectionProject {
             case ProjectsHomeSectionProject.BagConfigurator:
                 return new BagProjectPreviewManager(previewDiv)
             case ProjectsHomeSectionProject.CaravanController:
-                return
+                return new CaravanProjectPreviewManager(previewDiv)
         }
     }
 

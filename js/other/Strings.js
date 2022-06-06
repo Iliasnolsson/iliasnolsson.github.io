@@ -73,7 +73,7 @@ class Strings {
             "en": "Bigger Projects"
         }
         translations[Strings.SectionProjectsDescription.name] = {
-            "se": "En snabb översikt på årets större ny startade konsult projekt. Innhåller både utförda & aktiva projekt.",
+            "se": "En snabb översikt på några utav årets större ny startade konsult projekt. Innhåller både utförda & aktiva projekt.",
             "en": ""
         }
         //#region Sections - Projects - Content
@@ -135,7 +135,7 @@ class Strings {
             "en": ""
         }
         translations[Strings.SectionPracticeLeftBody.name] = {
-            "se": "<span>Riktigt bra system börjar med en riktigt bra design där funktionalitet är logiskt & naturlig. Funktionalitet valideras, vad behövs, vad ska prioriteras & hur vill vi att användaren ska uppleva systemet.</span><span>Logisk design resulterar i logisk kod, logisk kod resulterar i mindre ologisk kod & mindre ologisk kod betyder mer tid över till annat än att göra det ologiska logiskt.</span>",
+            "se": "<span>Bra system börjar med en bra design där funktionalitet är logiskt & naturlig. Vad ska prioriteras, vad ska synas & hur vill vi att användaren upplever systemet. </span><span>Logisk design resulterar i logisk kod. Logisk kod resulterar i slutändan till mer tid över till annat än att göra det ologiska, logiskt. Ett problem som annars ofta uppstår. </span>",
             "en": ""
         }
         translations[Strings.SectionPracticeCenterTitle.name] = {
@@ -143,7 +143,7 @@ class Strings {
             "en": ""
         }
         translations[Strings.SectionPracticeCenterBody.name] = {
-            "se": "<span>Målet med en system karta är att effektiversera det annars tid krävande, själva kodandet. Minsta detalj i systemet planeras. Hur ska komponenter kommunicera med varandra, hur fördelas ansvar mellan komponenter & främst hur kan vi ta bort så många frågetecken från kodandet som möjligt.</span><span>Fungerar även som ett riktigt bra sätt att snabbt få en förståelse för projektets uppbyggnad då projektet blir större och nya utvecklare ska introduceras till projektet.</span>",
+            "se": "<span>Effektivisering utav det annars tidskrävande. Själva kodandet. Systemet som helhet planeras utförligt. Minsta frågetecken som annars vidhändetas under kodandet görs istället under detta moment. Kommunikation, ansvar & logik mellan systemets alla komponenter ska vara tydligt. </span><span>System kartan fungerar även som ett sätt att snabbt introducera nya utvecklare till projektet vid vidareutveckling.</span>",
             "en": ""
         }
         translations[Strings.SectionPracticeRightTitle.name] = {
@@ -151,7 +151,7 @@ class Strings {
             "en": ""
         }
         translations[Strings.SectionPracticeRightBody.name] = {
-            "se": "Ett dokument som består utav två delar. En sammanfattning utav vad som är gjort och en del för vad som är planerat för framtiden.",
+            "se": "<span>Genom en logisk & naturlig design, en detaljerad & utänkt system karta så utförs detta stag snabbare än vad man först kan förvänta.</span><span>Från egen erfaranhet så har detta moment alltmer blivit det minst tidskrävande ur projektet som helhet.</span></span>",
             "en": ""
         }
         //#endregion
@@ -170,37 +170,37 @@ class Strings {
 
         //#region Sections - Communication 
         translations[Strings.SectionCommunication.name] = {
-            "se": "Tydlig Kommunikation",
+            "se": "Kommunikation",
             "en": ""
         }
         translations[Strings.SectionCommunicationDescription.name] = {
-            "se": "Kommunkation är riktigt viktigt och mitt mål är att kunden alltid ska känna sig helt med i projekts alla svängar. Bortsett från att alltid ha en ",
+            "se": "Tre typer utav dokument skapas genom projektets utveckling. Dokumenten fungerar både som ett sätt att förbättra kommunikation med kund men även mellan utvecklare.",
             "en": ""
         }
 
         //#region Sections - Communication - Content
         translations[Strings.SectionCommunicationLeftTitle.name] = {
-            "se": "Daglig Rapport",
-            "en": "Daily Report"
+            "se": "Daglig",
+            "en": "Daily"
         }
         translations[Strings.SectionCommunicationLeftBody.name] = {
-            "se": "Ett simpelt dokument med snabb översikt på vad som är gjort & vad som ska göras. Består utav två delar “Saker fixade” och “Saker att fixa“.",
+            "se": "Snabb översikt på vad som är gjort & vad som ska göras. Innhåller detaljer på kod nivå. Främst använt mellan utvecklare.",
             "en": ""
         }
         translations[Strings.SectionCommunicationCenterTitle.name] = {
-            "se": "Process Rapport",
-            "en": "Process Report"
+            "se": "Moment",
+            "en": "Moment"
         }
         translations[Strings.SectionCommunicationCenterBody.name] = {
-            "se": "<span>Ett dokument som på ett tydligt sätt går igenom ett större delmoment. Målet är att låta kunden få en väldigt detaljerad förståelse för vad som är gjort.</span>I det fall där projekt blir större och kräver fler utvecklare så fungerar dessa dokument även som ett sätt för nya utvecklare att snabbt få en förståelse för hur projektet är konstruerat.<span>",
+            "se": "<span>Rapport på större moment (ex: PoC, Wireframe). Relativt detaljerad men lätläst i jämförelse det det dagliga dokumentet.</span><span>Ger en helhets insikt på vilka problem som är lösta, hur dessa problem blev lösta och vad som är avklarat.</span>",
             "en": ""
         }
         translations[Strings.SectionCommunicationRightTitle.name] = {
-            "se": "Lansering Rapport",
-            "en": "Launch Report"
+            "se": "Lansering",
+            "en": "Launch"
         }
         translations[Strings.SectionCommunicationRightBody.name] = {
-            "se": "Ett dokument som består utav två delar. En sammanfattning utav vad som är gjort och en del för vad som är planerat för framtiden.",
+            "se": "<span>Alla moment sammanfattade för att ge en översikt på vad en lansering innehåller.</span><span>Beskriver även vad som är planerat till nästa lansering & en lista på möjliga tillägg.</span>",
             "en": ""
         }
         //#endregion

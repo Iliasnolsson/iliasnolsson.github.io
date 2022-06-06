@@ -62,7 +62,7 @@ class Portfolio {
             case PortfolioStageType.Language:
                 this.stage.languageDidChange = newLanguage => {
                     if (newLanguage != null) {
-                        CookieManager.setCookie("language", newLanguage.name, 14)
+                        CookieManager.setCookie("language", Language.Swedish.name, 14)
                     }
                 }
                 break

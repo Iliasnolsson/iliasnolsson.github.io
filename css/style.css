@@ -760,12 +760,11 @@ button {
   position: relative;
 }
 
-.scanner-preview > lottie-player {
+.scanner-preview > *:first-child {
   bottom: 5vh;
   right: 6vmin;
   position: absolute;
   width: 40%;
-  height: min-content;
   transform: skew(1deg, 10deg) rotate(1deg);
 }
 
@@ -775,12 +774,26 @@ button {
   position: relative;
 }
 
-.bag-preview > lottie-player {
+.bag-preview > *:first-child {
   bottom: 2vh;
   right: 4vmin;
   position: absolute;
   width: 54%;
-  height: min-content;
+  transform: skew(1deg, 10deg) rotate(1deg);
+}
+
+.caravan-preview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.caravan-preview > *:first-child {
+  bottom: -3vh;
+  right: 4vmin;
+  position: absolute;
+  width: 77%;
   transform: skew(1deg, 10deg) rotate(1deg);
 }
 
@@ -827,7 +840,7 @@ button {
 .stage-home-triple-section > div:first-child > div {
   display: grid;
   grid-auto-flow: column;
-  column-gap: 3vw;
+  column-gap: 0%;
   height: min-content;
   width: 100%;
   padding-bottom: 6vmin;
@@ -835,6 +848,7 @@ button {
 }
 
 .stage-home-triple-section > div:first-child > div > div {
+  min-width: calc(90vw / 3);
   display: grid;
   grid-auto-flow: row;
   grid-template-rows: auto auto min-content;
@@ -857,7 +871,7 @@ button {
   align-items: center;
 }
 
-.stage-home-triple-section > div:first-child > div > div > div:first-child > div > svg {
+.stage-home-triple-section > div:first-child > div > div > div:first-child > div > *:first-child {
   overflow: visible;
   max-width: 80%;
   min-height: 22.6vw;
@@ -865,7 +879,7 @@ button {
   box-shadow: 0px 0px 26px 1px rgba(66, 68, 90, 0.045);
 }
 
-.stage-home-triple-section > div:first-child > div > div > div:first-child > div > svg.no-shadow {
+.stage-home-triple-section > div:first-child > div > div > div:first-child > div > *:first-child.no-shadow {
   box-shadow: 0px 0px 26px 1px rgba(66, 68, 90, 0);
   border-radius: 0;
 }
@@ -881,7 +895,7 @@ button {
   flex-direction: column;
   justify-content: center;
   width: 83%;
-  max-width: 355px;
+  max-width: 330px;
 }
 
 .stage-home-triple-section > div:first-child > div > div > div:last-child > div > label {
@@ -943,6 +957,24 @@ button {
   min-width: 120%;
 }
 
+.process-map {
+  transform: scale(0.93) translateY(1.2vmin) rotateZ(0deg);
+}
+
+.process-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(1.8vmin);
+  margin-top: -1vmin;
+}
+
+.process-code > svg {
+  transform: scale(1.19);
+  overflow: visible;
+  height: 100%;
+}
+
 .stage-home-vector-section {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -981,5 +1013,6 @@ button {
 .home-stage-background-landscape {
   width: calc(100% - 10vmin);
   padding: 5vmin;
+  overflow: visible;
 }
 /*# sourceMappingURL=style.css.map */
